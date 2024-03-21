@@ -52,7 +52,7 @@ class GameRoom extends Room {
 
     onLeave(client, consented) {
         let existingRoom = storeData.find(ele => ele.id === client.sessionId);
-        this.broadcast('left_room', {message:`${existingRoom ? existingRoom?.name : 'Another Person'} left the Game, so You won the Game.`}, { except: client });
+        this.broadcast('left_room', {room:existingRoom?.room,message:`${existingRoom ? existingRoom?.name : 'Another Person'} left the Game, so You won the Game.`}, { except: client });
         storeData = storeData.filter(ele => ele.id !== client.sessionId);
     }
 
